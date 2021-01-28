@@ -1,12 +1,10 @@
 import React from 'react';
-import HostSection from "./host/HostSection";
-import GameSection from "./gamefield/GameSection";
+import GameField from './gamefield/GameField'
 
 function App() {
   return (
     <div className="wrapper">
-      < HostSection />
-      < GameSection />
+			<GameField />
     </div>
   );
 }
