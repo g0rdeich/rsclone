@@ -42,8 +42,6 @@ function App() {
 	const [loggedUser, setloggedUser] = React.useState('');
 	checLocalToken().then (res =>  setloggedUser(res));
 
-
-
 	const [topics, setTopics] = React.useState(Topics)
 	function logger(a) {
 		console.log(a);
@@ -65,6 +63,10 @@ function App() {
 		hide(table);
 		questionText.innerHTML = a.question;
 		show(questionText);
+		const currentQuestionPrice = a.price;
+		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
+		const currentQuestionRightAnswer = a.answers;
+		localStorage.setItem('currentQuestionRightAnswer', currentQuestionRightAnswer);
 	}
 
 	return (
