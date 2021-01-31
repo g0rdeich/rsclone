@@ -6,14 +6,22 @@ import hide from "../../../functions/hide";
 import changeHostText from "../../../functions/changeHostText";
 
 function checkGuess() {
-    const answer = document.querySelector('.answer-text').value;
+    const pointsInfo = document.querySelector('.player-points')
+    let points = parseInt(pointsInfo.innerHTML);
+    if(points !== 0) {
+        points = parseInt(localStorage.getItem('currentPoints'));
+    }
+    const answer = document.querySelector('.answer-text').value.trim();
     const rightAnswer = localStorage.getItem('currentQuestionRightAnswer');
     const price = parseInt(localStorage.getItem('currentQuestionPrice'), 10);
+    console.log(`points: ${points} ${typeof points}, price: ${price} ${typeof price}`);
     if(answer === rightAnswer) {
         changeHostText('Абсолютно верно!');
-        console.log(price);
+        points += price;
+        console.log(`points now: ${points}`);
     } else {
-        console.log(-price);
+        points -= price;
+        console.log(`points now: ${points}`);
         changeHostText(`Минус ${price} баллов!`);
     }
     const table = document.querySelector('.questions-table');
@@ -21,6 +29,13 @@ function checkGuess() {
     show(table);
     questionText.innerHTML = '';
     hide(questionText);
+    const textArea = document.querySelector('.answer-text');
+    const submitBtn = document.querySelector('.submit-button');
+    hide(textArea);
+    textArea.value = '';
+    hide(submitBtn);
+    localStorage.setItem('currentPoints', points.toString());
+    pointsInfo.innerHTML = `${points}`;
 }
 
 function ButtonsSection() {

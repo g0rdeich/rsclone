@@ -6,7 +6,7 @@ function GameSection({topics, logger}) {
     return (
         <div className="game-section">
             < QuestionsSection topics={topics} logger={logger}/>
-            < PlayersSection/>
+            < PlayersSection />
         </div>
     )
 }

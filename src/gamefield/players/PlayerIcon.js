@@ -4,7 +4,7 @@ import Avatar from "../../components/Avatar";
 function PlayerIcon() {
     return (
         <div className="player-icon">
-            <div>1000</div>
+            <div className="player-points">0</div>
             <div>Name</div>
             < Avatar />
         </div>
