@@ -7,42 +7,44 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 .wrapper {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: blue;
 }
 
 .GAME_FIELD_WRAPPER{
-	display: flex;
+  display: flex;
+  height: 95%;
 }
 
 .NAVBAR {
-	display: flex;
-	justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  height: 5%;
 }
 
 .NAVBAR > li {
-	list-style-type: none;
-	padding-left: 1rem;
+  list-style-type: none;
+  padding-left: 1rem;
 }
 
 .NAVBAR > li:hover {
-	cursor: pointer;
-	text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .host-section {
@@ -61,10 +63,11 @@ code {
 
 .questions-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70vw;
-  height: 60vh;
+  width: 70%;
+  height: 60%;
 }
 
 .round-number {
@@ -72,17 +75,18 @@ code {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 25%;
+  font-size: 30px;
+  margin-bottom: 2%;
 }
 
 .topic {
   display: flex;
   width: 100%;
-  height: 12.5%;
+  height: 16%;
   border: 5px solid yellow;
 }
 
-.topic:not(:nth-child(2)) {
+.topic:not(:nth-child(1)) {
   border-top: none;
 }
 
@@ -124,4 +128,42 @@ code {
   width: 170px;
   height: 170px;
   background-color: black;
+}
+
+.info {
+  position: fixed;
+  top: 20%;
+  left: 17%;
+  width: 350px;
+  height: 250px;
+  background-image: url("./img/Speech_bubble.svg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.host-text {
+  margin: 13% auto;
+  width: 200px;
+  height: 130px;
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 170px;
+  height: 170px;
+}
+
+.button {
+  width: 170px;
+  height: 50px;
+}
+
+.hidden {
+  display: none;
 }
