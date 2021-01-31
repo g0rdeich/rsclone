@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Autorization from '../Modals/Autorization'
+import UserWindow from '../Modals/UserWindow'
 import Context from '../../GlobalContext'
 
 function Navbar() {
@@ -18,7 +19,11 @@ function Navbar() {
 					</React.Fragment>)
 				}
 
-				{loggedUser && (<li> {loggedUser} </li>)}
+				{loggedUser && (
+				<React.Fragment>
+					<UserWindow />
+				</React.Fragment>
+				)}
 			</ul>
 		</nav>
 	)
