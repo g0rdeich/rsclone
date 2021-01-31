@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.modal-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+  width: 400px;
+  border-radius: 5px;
+  background: white;
+	height: 300px;
+	max-height: 90vh;
+	overflow: auto;
+}
+
+.RegAuthForm{
+	display: flex;
+	flex-direction: column;
+}
+
+.RegAuth-Controls {
+	display: flex;
+	justify-content: center;
+}
