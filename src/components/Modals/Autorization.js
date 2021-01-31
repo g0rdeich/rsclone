@@ -17,12 +17,14 @@ function Autorization(props) {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const {windowName, isRegisterWnindow} = props;
 	const[message, setMessage] = React.useState(DEFAULT_MESSAGE);
-
 	const {setloggedUser} = React.useContext(Context);
+
+	React.useEffect(() => {
+		setMessage(DEFAULT_MESSAGE);
+	}, [isOpen]);
 
 	const closeModalHandler = (e) => {
 		if (e === undefined){
-			setMessage(DEFAULT_MESSAGE);
 			setIsOpen(false);
 		} else {
 			(e.target === document.querySelector('.modal') && setIsOpen(false));
@@ -63,7 +65,28 @@ function Autorization(props) {
 				setMessage('Пользователь уже существует!')
 			}
 		} else {
-			console.log('not implemented')
+			const requestOptions = {
+				method: 'PUT',
+				headers:{
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					login: login,
+					password: password
+				})
+			}
+
+			const request = await fetch(loginPath, requestOptions);
+			const result = await request.json();
+
+			if (result.status){
+				setMessage('Вход произведен!');
+				saveToken(result.token);
+				closeModalHandler();
+				setloggedUser(login);
+			} else {
+				setMessage('Пользователь не найден!')
+			}
 		}
 	}
 
