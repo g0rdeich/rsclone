@@ -1,51 +1,41 @@
 import React from 'react';
-import Navbar from "./components/Navbar/navbar";
-import GameField from './gamefield/GameField'
-import GlobalContext from './GlobalContext'
-import  {sessionToken, checkSessionPath} from './components/Const'
+import HostSection from "./host/HostSection";
+import GameSection from "./gamefield/GameSection";
+import Topics from "./topics/topics";
+import hide from "./functions/hide";
+import show from "./functions/show";
+import changeHostText from "./functions/changeHostText";
 
-async function checLocalToken() {
-	const localToken = localStorage.getItem(sessionToken);
-
-	if (localToken){
-		const requestOptions = {
-			method: 'PUT',
-			headers:{
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				token: localToken,
-			})
-		};
-
-		const request = await fetch(checkSessionPath, requestOptions);
-		const result = await request.json();
-
-		if (result.status){
-		console.log('token found and valid')
-		return result.user;
-
-		} else {
-		console.log('token not found or invalid')
-		localStorage.removeItem(sessionToken);
-		return '';
-		}
-	}
-}
 
 function App() {
-
-	const [loggedUser, setloggedUser] = React.useState('');
-	checLocalToken().then (res =>  setloggedUser(res));
-
-	return (
-    <GlobalContext.Provider value= {{ loggedUser, setloggedUser}} >
-		<div className="wrapper">
-      <Navbar />
-			<GameField />
-    </div>
-		</GlobalContext.Provider>
-  );
+    const [topics, setTopics] = React.useState(Topics)
+    function logger(a) {
+        console.log(a);
+        if(a.played === true) {
+            console.log('already played');
+            return;
+        }
+        const newHostText = `${a.topicName} ${a.price}`;
+        const info = document.querySelector('.info');
+        show(info);
+        changeHostText(newHostText);
+        setTopics(
+            topics.map((topic) => {
+                a.played = true;
+                return topic;
+        }))
+        const table = document.querySelector('.questions-table');
+        hide(table);
+        const questionText = document.querySelector('.question-text');
+        questionText.innerHTML = a.question;
+        show(questionText);
+    }
+   return (
+     <div className="wrapper">
+       < HostSection />
+       < GameSection topics={topics} logger={logger}/>
+     </div>
+   );
 }
 
 export default App;
