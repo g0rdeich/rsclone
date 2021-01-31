@@ -42,6 +42,8 @@ function App() {
 	const [loggedUser, setloggedUser] = React.useState('');
 	checLocalToken().then (res =>  setloggedUser(res));
 
+
+
 	const [topics, setTopics] = React.useState(Topics)
 	function logger(a) {
 		console.log(a);
@@ -59,8 +61,8 @@ function App() {
 				return topic;
 			}))
 		const table = document.querySelector('.questions-table');
-		hide(table);
 		const questionText = document.querySelector('.question-text');
+		hide(table);
 		questionText.innerHTML = a.question;
 		show(questionText);
 	}

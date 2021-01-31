@@ -6,7 +6,7 @@ function PlayersSection() {
     return (
         <div className="players-section">
             < PlayerIcon />
-            < ButtonsSection />
+            < ButtonsSection/>
         </div>
     )
 }
