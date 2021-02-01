@@ -6,7 +6,7 @@ function GameSection() {
     return (
         <div className="game-section">
             < QuestionsSection  />
-            < PlayersSection />
+            {/*< PlayersSection />*/}
         </div>
     )
 }
