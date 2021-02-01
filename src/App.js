@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from "./components/Navbar/navbar";
 import GameField from './gamefield/GameField'
-import Topics from "./topics/topics";
+import Topics, { getRoundRandomTopics } from "./topics/topics";
 import hide from "./functions/hide";
 import show from "./functions/show";
 import changeHostText from "./functions/changeHostText";
@@ -35,14 +35,20 @@ async function checLocalToken() {
 		return '';
 		}
 	}
+	return '';
 }
 
 function App() {
 
 	const [loggedUser, setloggedUser] = React.useState('');
-	checLocalToken().then (res =>  setloggedUser(res));
-
 	const [topics, setTopics] = React.useState(Topics)
+
+	React.useEffect(() =>{
+		checLocalToken().then (res =>  setloggedUser(res));
+		getRoundRandomTopics().then(res => setTopics(res));
+		console.log('useEffect app')
+	 }, []);
+
 	function logger(a) {
 		console.log(a);
 		if(a.played === true) {
@@ -70,10 +76,10 @@ function App() {
 	}
 
 	return (
-    <GlobalContext.Provider value= {{ loggedUser, setloggedUser}} >
+    <GlobalContext.Provider value= {{ loggedUser, setloggedUser, logger, topics, setTopics}} >
 		<div className="wrapper">
       <Navbar />
-			<GameField topics={topics} logger={logger}/>
+			<GameField />
     </div>
 		</GlobalContext.Provider>
   );
