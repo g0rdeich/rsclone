@@ -6,7 +6,8 @@ import hide from "./functions/hide";
 import show from "./functions/show";
 import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
-import  {sessionToken, checkSessionPath} from './components/Const'
+import  {sessionToken, checkSessionPath} from './components/Const';
+import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
 async function checLocalToken() {
 	const localToken = localStorage.getItem(sessionToken);
@@ -41,7 +42,8 @@ async function checLocalToken() {
 function App() {
 
 	const [loggedUser, setloggedUser] = React.useState('');
-	const [topics, setTopics] = React.useState(Topics)
+	const [topics, setTopics] = React.useState(Topics);
+	const [btns, setBtns] = React.useState(ButtonsBlocked);
 
 	React.useEffect(() =>{
 		checLocalToken().then (res =>  setloggedUser(res));
@@ -73,10 +75,16 @@ function App() {
 		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
 		const currentQuestionRightAnswer = a.answers;
 		localStorage.setItem('currentQuestionRightAnswer', currentQuestionRightAnswer);
+		setBtns(
+			btns.map((btn) => {
+				btn.isBlocked = !btn.isBlocked;
+				return btn;
+			})
+		)
 	}
 
 	return (
-    <GlobalContext.Provider value= {{ loggedUser, setloggedUser, logger, topics, setTopics}} >
+    <GlobalContext.Provider value= {{ loggedUser, setloggedUser, logger, topics, setTopics, btns, setBtns}} >
 		<div className="wrapper">
       <Navbar />
 			<GameField />
