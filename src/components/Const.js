@@ -1,10 +1,14 @@
-// const serverPath = 'http://localhost:3005/'; //development server
-const serverPath = 'https://rs-clone-thrvrce-demo.herokuapp.com/';// production server
+ const serverPath = 'http://localhost:3005/'; //development server
+//const serverPath = 'https://rs-clone-thrvrce-demo.herokuapp.com/';// production server
 // const Consts = {
 	const loginPath = `${serverPath}login/authorize`;
 	const registerPath = `${serverPath}login/register`;
 	const checkSessionPath = `${serverPath}login/checkSession`;
-	const logOutPath = `${serverPath}login/logout`
+	const logOutPath = `${serverPath}login/logout`;
+	const getAllTopicsPath = `${serverPath}topics/getalltopics`;
+	const getTopicByNamePath = `${serverPath}topics/gettopicbyname`;
+	const insertArrayOfTopicsPath = `${serverPath}topics/posttopics`;
+	const deleteTopicByNamePath = `${serverPath}topics/deletetopicbyname`;
 	const sessionToken = 'sessionToken';
 // }
 export {
@@ -12,5 +16,9 @@ export {
 	registerPath,
 	checkSessionPath,
 	sessionToken,
-	logOutPath
+	logOutPath,
+	getAllTopicsPath,
+	getTopicByNamePath,
+	insertArrayOfTopicsPath,
+	deleteTopicByNamePath,
 }
