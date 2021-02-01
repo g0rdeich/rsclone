@@ -1,5 +1,4 @@
 import React from 'react'
-import HostSection from "./host/HostSection";
 import GameSection from "./GameSection/GameSection";
 import BottomSection from "./bottomSection/BottomSection";
 

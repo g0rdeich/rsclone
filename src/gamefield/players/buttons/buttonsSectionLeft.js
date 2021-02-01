@@ -21,10 +21,25 @@ function checkGuess() {
         changeHostText('Абсолютно верно!');
         points += price;
         console.log(`points now: ${points}`);
+        if(localStorage.getItem('rightAnswers')) {
+            const rightAnswers = parseInt(localStorage.getItem('rightAnswers'));
+            const newCounter = rightAnswers + 1;
+            localStorage.setItem('rightAnswers', newCounter.toString());
+        } else {
+            localStorage.setItem('rightAnswers', '1');
+        }
     } else {
         points -= price;
         console.log(`points now: ${points}`);
-        changeHostText(`Минус ${price} баллов!`);
+        changeHostText(`Минус ${price} баллов!
+        Правильный ответ: ${rightAnswer}`);
+        if(localStorage.getItem('wrongAnswers')) {
+            const rightAnswers = parseInt(localStorage.getItem('rightAnswers'));
+            const newCounter = rightAnswers + 1;
+            localStorage.setItem('wrongAnswers', newCounter.toString());
+        } else {
+            localStorage.setItem('wrongAnswers', '1');
+        }
     }
     const table = document.querySelector('.questions-table');
     const questionText = document.querySelector('.question-text');
