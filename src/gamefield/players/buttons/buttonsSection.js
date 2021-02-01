@@ -1,4 +1,6 @@
 import React from 'react';
+import Context from '../../../GlobalContext'
+import { getRoundRandomTopics } from '../../../topics/topics'
 import AnswerButton from "./answerButton";
 import SkipQuestionButton from "./skipQuestionButton";
 import show from "../../../functions/show";
@@ -39,7 +41,9 @@ function checkGuess() {
 }
 
 function ButtonsSection() {
-    return (
+	const { setTopics } = React.useContext(Context);
+
+	return (
         <div className="buttons-section">
             < AnswerButton />
             <textarea className="answer-text hidden"></textarea>
@@ -47,6 +51,7 @@ function ButtonsSection() {
                     onClick={() => checkGuess()}>
                 Подтвердить ответ</button>
             < SkipQuestionButton/>
+						<button type='button' onClick={() => getRoundRandomTopics().then(res => setTopics(res))}> Сменить тур</button>
         </div>
     )
 }
