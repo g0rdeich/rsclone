@@ -1,7 +1,9 @@
 import React from 'react';
+import Context from '../../GlobalContext'
 
-function Question({question, logger}) {
-    let price = question.price;
+function Question({question}) {
+	const {logger } = React.useContext(Context)
+	let price = question.price;
     if(question.played === true) {
         price = '';
     }
