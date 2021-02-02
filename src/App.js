@@ -10,7 +10,6 @@ import  {sessionToken, checkSessionPath} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
 function App() {
-	
 
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
@@ -59,9 +58,7 @@ function App() {
 	}
 
 	function logger(a) {
-		console.log(a);
 		if(a.played === true) {
-			console.log('already played');
 			return;
 		}
 		const newHostText = `${a.topicName} ${a.price}`;
@@ -77,6 +74,9 @@ function App() {
 		const questionText = document.querySelector('.question-text');
 		hide(table);
 		questionText.innerHTML = a.question;
+		speechSynthesis.speak(
+			new SpeechSynthesisUtterance(a.question)
+		);
 		show(questionText);
 		const currentQuestionPrice = a.price;
 		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
