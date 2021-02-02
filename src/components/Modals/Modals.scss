@@ -27,6 +27,7 @@ $common-border: 0.2rem solid $common-border-color;
   display: flex;
   justify-content: center;
 	padding-top: 5rem;
+	z-index: 1;
 
 	&-body-auth {
 		@include common-modal-body;
