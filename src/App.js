@@ -8,6 +8,8 @@ import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath} from './components/Const'
 
+let loggedUser = null;
+
 async function checLocalToken() {
 	const localToken = localStorage.getItem(sessionToken);
 
@@ -22,31 +24,34 @@ async function checLocalToken() {
 			})
 		};
 
-		const request = await fetch(checkSessionPath, requestOptions);
-		const result = await request.json();
+		const response = await fetch(checkSessionPath, requestOptions);
+		const result = await response.json();
 
 		if (result.status){
-		console.log('token found and valid')
-		return result.user;
-
+			loggedUser = result.user;
+			return true;
 		} else {
-		console.log('token not found or invalid')
+		alert(result.message);
 		localStorage.removeItem(sessionToken);
-		return '';
+		loggedUser = null;
+		return false;
 		}
 	}
-	return '';
+	loggedUser = null;
+	return false;
 }
 
 function App() {
-
-	const [loggedUser, setloggedUser] = React.useState('');
+	console.log('app init')
+	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
 
+	const [isActiveMenu, setisActiveMenu] = React.useState(false);
+
 	React.useEffect(() =>{
-		checLocalToken().then (res =>  setloggedUser(res));
+		checLocalToken().then (res =>  setisUserLoged(res));
 		getRoundRandomTopics().then(res => setTopics(res));
-		console.log('useEffect app')
+		console.log('useeffect')
 	 }, []);
 
 	function logger(a) {
@@ -74,13 +79,13 @@ function App() {
 		const currentQuestionRightAnswer = a.answers;
 		localStorage.setItem('currentQuestionRightAnswer', currentQuestionRightAnswer);
 	}
-
+	console.log(loggedUser);
 	return (
-    <GlobalContext.Provider value= {{ loggedUser, setloggedUser, logger, topics, setTopics}} >
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser, setisUserLoged, logger, topics, setTopics}} >
 		<div className="wrapper">
       <Navbar />
 			<GameField />
-    </div>
+			</div>
 		</GlobalContext.Provider>
   );
 }

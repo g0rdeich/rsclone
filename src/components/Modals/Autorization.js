@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import './Authorization.css'
+import './Modals.css'
 import  {registerPath, loginPath, sessionToken} from '../Const'
 import Context from '../../GlobalContext'
 
@@ -17,7 +17,7 @@ function Autorization(props) {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const {windowName, isRegisterWnindow} = props;
 	const[message, setMessage] = React.useState(DEFAULT_MESSAGE);
-	const {setloggedUser} = React.useContext(Context);
+	let {setisUserLoged, loggedUser} = React.useContext(Context);
 
 	React.useEffect(() => {
 		setMessage(DEFAULT_MESSAGE);
@@ -53,16 +53,17 @@ function Autorization(props) {
 				})
 			}
 
-			const request = await fetch(registerPath, requestOptions);
-			const result = await request.json();
+			const response = await fetch(registerPath, requestOptions);
+			const result = await response.json();
 
 			if (result.status){
+				loggedUser = result.user;
 				setMessage('Вы зарегистрированы!');
 				saveToken(result.token);
 				closeModalHandler();
-				setloggedUser(login);
+				setisUserLoged(true);
 			} else {
-				setMessage('Пользователь уже существует!')
+				setMessage(result.message);
 			}
 		} else {
 			const requestOptions = {
@@ -75,17 +76,20 @@ function Autorization(props) {
 					password: password
 				})
 			}
-
-			const request = await fetch(loginPath, requestOptions);
-			const result = await request.json();
+			console.log(requestOptions)
+			const response = await fetch(loginPath, requestOptions);
+			const result = await response.json();
 
 			if (result.status){
+				loggedUser = result.user;
 				setMessage('Вход произведен!');
+				console.log(result.user);
 				saveToken(result.token);
 				closeModalHandler();
-				setloggedUser(login);
+				setisUserLoged(true);
+				console.log(loggedUser)
 			} else {
-				setMessage('Пользователь не найден!')
+				setMessage(result.message);
 			}
 		}
 	}
@@ -96,7 +100,7 @@ function Autorization(props) {
 
         {isOpen && (
           <div className='modal' onClick ={(e)=> closeModalHandler(e) } >
-            <div className='modal-body'>
+            <div className='modal-body-auth'>
               <h1>{windowName}</h1>
               <p>{message}</p>
 
