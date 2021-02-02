@@ -8,43 +8,14 @@ import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath} from './components/Const'
 
-let loggedUser = null;
 
-async function checLocalToken() {
-	const localToken = localStorage.getItem(sessionToken);
 
-	if (localToken){
-		const requestOptions = {
-			method: 'PUT',
-			headers:{
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				token: localToken,
-			})
-		};
 
-		const response = await fetch(checkSessionPath, requestOptions);
-		const result = await response.json();
-
-		if (result.status){
-			loggedUser = result.user;
-			return true;
-		} else {
-		alert(result.message);
-		localStorage.removeItem(sessionToken);
-		loggedUser = null;
-		return false;
-		}
-	}
-	loggedUser = null;
-	return false;
-}
 
 function App() {
-	console.log('app init')
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
+	let [loggedUser, setloggedUser] = React.useState({});
 
 	const [isActiveMenu, setisActiveMenu] = React.useState(false);
 
@@ -53,6 +24,37 @@ function App() {
 		getRoundRandomTopics().then(res => setTopics(res));
 		console.log('useeffect')
 	 }, []);
+
+	 async function checLocalToken() {
+		const localToken = localStorage.getItem(sessionToken);
+
+		if (localToken){
+			const requestOptions = {
+				method: 'PUT',
+				headers:{
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					token: localToken,
+				})
+			};
+
+			const response = await fetch(checkSessionPath, requestOptions);
+			const result = await response.json();
+
+			if (result.status){
+				setloggedUser(result.user);
+				return true;
+			} else {
+			alert(result.message);
+			localStorage.removeItem(sessionToken);
+			setloggedUser({});
+			return false;
+			}
+		}
+		setloggedUser({});
+		return false;
+	}
 
 	function logger(a) {
 		console.log(a);
@@ -79,9 +81,9 @@ function App() {
 		const currentQuestionRightAnswer = a.answers;
 		localStorage.setItem('currentQuestionRightAnswer', currentQuestionRightAnswer);
 	}
-	console.log(loggedUser);
+
 	return (
-    <GlobalContext.Provider value= {{ isUserLoged, loggedUser, setisUserLoged, logger, topics, setTopics}} >
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics, setTopics}} >
 		<div className="wrapper">
       <Navbar />
 			<GameField />

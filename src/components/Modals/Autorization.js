@@ -6,22 +6,23 @@ import Context from '../../GlobalContext'
 
 const DEFAULT_MESSAGE = 'Заполните форму';
 
-function saveToken (token) {
-	if (localStorage.getItem(sessionToken)){
-		localStorage.removeItem(sessionToken)
-	}
-
-	localStorage.setItem(sessionToken, token)
-}
 function Autorization(props) {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const {windowName, isRegisterWnindow} = props;
 	const[message, setMessage] = React.useState(DEFAULT_MESSAGE);
-	let {setisUserLoged, loggedUser} = React.useContext(Context);
+	let {setisUserLoged, loggedUser, setloggedUser} = React.useContext(Context);
 
 	React.useEffect(() => {
 		setMessage(DEFAULT_MESSAGE);
 	}, [isOpen]);
+
+	function saveToken (token) {
+		if (localStorage.getItem(sessionToken)){
+			localStorage.removeItem(sessionToken)
+		}
+
+		localStorage.setItem(sessionToken, token)
+	}
 
 	const closeModalHandler = (e) => {
 		if (e === undefined){
@@ -57,10 +58,9 @@ function Autorization(props) {
 			const result = await response.json();
 
 			if (result.status){
-				loggedUser = result.user;
-				setMessage('Вы зарегистрированы!');
-				saveToken(result.token);
 				closeModalHandler();
+				saveToken(result.token);
+				setloggedUser(result.user);
 				setisUserLoged(true);
 			} else {
 				setMessage(result.message);
@@ -76,18 +76,17 @@ function Autorization(props) {
 					password: password
 				})
 			}
-			console.log(requestOptions)
+
 			const response = await fetch(loginPath, requestOptions);
 			const result = await response.json();
 
 			if (result.status){
-				loggedUser = result.user;
-				setMessage('Вход произведен!');
-				console.log(result.user);
-				saveToken(result.token);
 				closeModalHandler();
+				saveToken(result.token);
+				setloggedUser(result.user);
+				// setMessage('Вход произведен!');
 				setisUserLoged(true);
-				console.log(loggedUser)
+
 			} else {
 				setMessage(result.message);
 			}
@@ -104,7 +103,7 @@ function Autorization(props) {
               <h1>{windowName}</h1>
               <p>{message}</p>
 
-							<form name='RegAuthForm' action="#" onSubmit = {(e) => authorizationHandller(e)} className='RegAuthForm'>
+							<form name='RegAuthForm' action="#" onSubmit = {async (e) => { await authorizationHandller(e); /*console.log(123123, loggedUser);  settest(loggedUser);*/}} className='RegAuthForm'>
 								<label>Логин: <br/>
 									<input name='login' type='text' placeholder="Логин" required/>
 								</label>

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Autorization from '../Modals/Autorization'
 import UserWindow from '../Modals/UserWindow'
 import Context from '../../GlobalContext'
