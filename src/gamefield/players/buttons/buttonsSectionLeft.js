@@ -11,6 +11,10 @@ import compareAnswers from "../../../functions/compareAnswers";
 import useSound from "use-sound";
 import wrongAnswerSound from "../../../sounds/100-k-1-wrong-answer.mp3";
 import rightAnswerSound from "../../../sounds/right-answer.mp3";
+import getRandomInt from "../../../functions/getRandomNumber";
+import RightAnswerPhrases from "../../host/rightAnswerPhrases";
+import WrongAnswerPhrases from "../../host/wrongAnswersPhrases";
+
 
 function ButtonsSectionLeft() {
 	const { setTopics } = React.useContext(Context);
@@ -30,8 +34,9 @@ function ButtonsSectionLeft() {
         const rightAnswer = localStorage.getItem('currentQuestionRightAnswer');
         const price = parseInt(localStorage.getItem('currentQuestionPrice'), 10);
         const isRight = compareAnswers(answer, rightAnswer);
+        const randomNumber = getRandomInt(0, RightAnswerPhrases.length);
         if(isRight === true) {
-            changeHostText('Абсолютно верно!');
+            changeHostText(RightAnswerPhrases[randomNumber]);
             points += price;
             console.log(`points now: ${points}`);
             addToStats('right');
@@ -39,7 +44,8 @@ function ButtonsSectionLeft() {
         } else {
             points -= price;
             console.log(`points now: ${points}`);
-            changeHostText(`Минус ${price} баллов!
+            changeHostText(`${WrongAnswerPhrases[randomNumber]}
+            Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
             addToStats('wrong');
             playWrongAnswerSound();
