@@ -21,8 +21,14 @@ function ButtonsSectionLeft() {
 
 	const {btns, setBtns} = React.useContext(Context);
 
+	const { tour, setTour } = React.useContext(Context);
+
     const [playWrongAnswerSound] = useSound(wrongAnswerSound);
     const [playRightAnswerSound] = useSound(rightAnswerSound);
+
+    const table = document.querySelector('.questions-table');
+    const questionText = document.querySelector('.question-text');
+    const info = document.querySelector('.info');
 
     function CheckGuess() {
         const pointsInfo = document.querySelector('.player-points')
@@ -35,23 +41,19 @@ function ButtonsSectionLeft() {
         const price = parseInt(localStorage.getItem('currentQuestionPrice'), 10);
         const isRight = compareAnswers(answer, rightAnswer);
         const randomNumber = getRandomInt(0, RightAnswerPhrases.length);
-        if(isRight === true) {
+        if(isRight === true && answer !== '') {
             changeHostText(RightAnswerPhrases[randomNumber]);
             points += price;
-            console.log(`points now: ${points}`);
             addToStats('right');
             playRightAnswerSound();
         } else {
             points -= price;
-            console.log(`points now: ${points}`);
             changeHostText(`${WrongAnswerPhrases[randomNumber]}
             Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
             addToStats('wrong');
             playWrongAnswerSound();
         }
-        const table = document.querySelector('.questions-table');
-        const questionText = document.querySelector('.question-text');
         show(table);
         questionText.innerHTML = '';
         hide(questionText);
@@ -70,6 +72,24 @@ function ButtonsSectionLeft() {
         )
     }
 
+    function updateTopics() {
+        getRoundRandomTopics().then(res => setTopics(res));
+        hide(questionText);
+        show(table);
+        hide(info);
+        setTour(
+            (tour) => {
+                return tour + 1;
+            }
+        )
+        setBtns(
+            btns.map((btn) => {
+                btn.isBlocked = !btn.isBlocked;
+                return btn;
+            })
+        )
+    }
+
 	return (
         <div className="buttons-section-left">
             < AnswerButton />
@@ -79,7 +99,7 @@ function ButtonsSectionLeft() {
                 Подтвердить ответ</button>
             < SkipQuestionButton />
             <button type='button' className="button next-round-button"
-                    onClick={() => getRoundRandomTopics().then(res => setTopics(res))}> Сменить тур</button>
+                    onClick={() => updateTopics()}> Сменить тур</button>
         </div>
     )
 }
