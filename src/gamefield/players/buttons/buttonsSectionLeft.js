@@ -14,6 +14,7 @@ function ButtonsSectionLeft() {
 
 	const {btns, setBtns} = React.useContext(Context);
 
+	const { loggedUser, setloggedUser, isUserLoged } = React.useContext(Context);
     function CheckGuess() {
         const pointsInfo = document.querySelector('.player-points')
         let points = parseInt(pointsInfo.innerHTML);
@@ -28,13 +29,13 @@ function ButtonsSectionLeft() {
             changeHostText('Абсолютно верно!');
             points += price;
             console.log(`points now: ${points}`);
-            addToStats('right');
+            (isUserLoged && addToStats(true, loggedUser, setloggedUser));
         } else {
             points -= price;
             console.log(`points now: ${points}`);
             changeHostText(`Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
-            addToStats('wrong');
+				(isUserLoged && addToStats(false, loggedUser, setloggedUser));
         }
         const table = document.querySelector('.questions-table');
         const questionText = document.querySelector('.question-text');
