@@ -1,0 +1,143 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 5rem;
+}
+
+.modal-body-auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem;
+  border-radius: 5px;
+  background: blue;
+  overflow: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  color: white;
+  border: 0.2rem solid yellow;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 400px;
+  height: 300px;
+}
+
+.modal-body-auth .RegAuthForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modal-body-auth .RegAuth-Controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-body-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem;
+  border-radius: 5px;
+  background: blue;
+  overflow: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  color: white;
+  border: 0.2rem solid yellow;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 75vw;
+  min-width: 320px;
+  height: 75vh;
+  min-height: 380px;
+}
+
+.modal-body-user > .user_contextWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border: 0.2rem solid yellow;
+}
+
+.modal-body-user > .user_contextWrapper > .user-menu {
+  background-color: red;
+  height: 60vh;
+  overflow: auto;
+  min-width: 30%;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+}
+
+.modal-body-user > .user_contextWrapper > .user-menu li {
+  list-style-type: none;
+  padding-left: 1rem;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+}
+
+.modal-body-user > .user_contextWrapper > .user-menu li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-body-user > .user_contextWrapper > .user-menu-item {
+  background-color: green;
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  flex-basis: 70%;
+  height: 60vh;
+  min-width: 30vw;
+  overflow: auto;
+}
+
+.modal-body-user > .user_contextWrapper > .user-menu-item .avatarImg {
+  width: 5rem;
+  height: 6rem;
+}
+/*# sourceMappingURL=Modals.css.map */

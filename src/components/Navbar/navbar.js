@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Autorization from '../Modals/Autorization'
 import UserWindow from '../Modals/UserWindow'
 import Context from '../../GlobalContext'
@@ -7,19 +6,19 @@ import Context from '../../GlobalContext'
 function Navbar() {
 	const NAVBAR = 'NAVBAR';
 //	const [userLogged, setUserLogged] = React.useState(false)// todo check login state whenpage is loaded
-	const {loggedUser} = React.useContext(Context);
+	let { isUserLoged } = React.useContext(Context);
 
 	return(
 		<nav>
 			<ul className={NAVBAR}>
-				{!loggedUser &&
+				{!isUserLoged &&
 					(<React.Fragment>
 						<Autorization windowName={'Вход'} isRegisterWnindow={false} />
 						<Autorization windowName={'Регистрация'} isRegisterWnindow={true}/>
 					</React.Fragment>)
 				}
 
-				{loggedUser && (
+				{isUserLoged && (
 				<React.Fragment>
 					<UserWindow />
 				</React.Fragment>

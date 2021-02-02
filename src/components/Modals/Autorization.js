@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import './Authorization.css'
+import './Modals.css'
 import  {registerPath, loginPath, sessionToken} from '../Const'
 import Context from '../../GlobalContext'
 
 const DEFAULT_MESSAGE = 'Заполните форму';
 
-function saveToken (token) {
-	if (localStorage.getItem(sessionToken)){
-		localStorage.removeItem(sessionToken)
-	}
-
-	localStorage.setItem(sessionToken, token)
-}
 function Autorization(props) {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const {windowName, isRegisterWnindow} = props;
 	const[message, setMessage] = React.useState(DEFAULT_MESSAGE);
-	const {setloggedUser} = React.useContext(Context);
+	let {setisUserLoged, loggedUser, setloggedUser} = React.useContext(Context);
 
 	React.useEffect(() => {
 		setMessage(DEFAULT_MESSAGE);
 	}, [isOpen]);
+
+	function saveToken (token) {
+		if (localStorage.getItem(sessionToken)){
+			localStorage.removeItem(sessionToken)
+		}
+
+		localStorage.setItem(sessionToken, token)
+	}
 
 	const closeModalHandler = (e) => {
 		if (e === undefined){
@@ -53,16 +54,16 @@ function Autorization(props) {
 				})
 			}
 
-			const request = await fetch(registerPath, requestOptions);
-			const result = await request.json();
+			const response = await fetch(registerPath, requestOptions);
+			const result = await response.json();
 
 			if (result.status){
-				setMessage('Вы зарегистрированы!');
-				saveToken(result.token);
 				closeModalHandler();
-				setloggedUser(login);
+				saveToken(result.token);
+				setloggedUser(result.user);
+				setisUserLoged(true);
 			} else {
-				setMessage('Пользователь уже существует!')
+				setMessage(result.message);
 			}
 		} else {
 			const requestOptions = {
@@ -76,16 +77,18 @@ function Autorization(props) {
 				})
 			}
 
-			const request = await fetch(loginPath, requestOptions);
-			const result = await request.json();
+			const response = await fetch(loginPath, requestOptions);
+			const result = await response.json();
 
 			if (result.status){
-				setMessage('Вход произведен!');
-				saveToken(result.token);
 				closeModalHandler();
-				setloggedUser(login);
+				saveToken(result.token);
+				setloggedUser(result.user);
+				// setMessage('Вход произведен!');
+				setisUserLoged(true);
+
 			} else {
-				setMessage('Пользователь не найден!')
+				setMessage(result.message);
 			}
 		}
 	}
@@ -96,11 +99,11 @@ function Autorization(props) {
 
         {isOpen && (
           <div className='modal' onClick ={(e)=> closeModalHandler(e) } >
-            <div className='modal-body'>
+            <div className='modal-body-auth'>
               <h1>{windowName}</h1>
               <p>{message}</p>
 
-							<form name='RegAuthForm' action="#" onSubmit = {(e) => authorizationHandller(e)} className='RegAuthForm'>
+							<form name='RegAuthForm' action="#" onSubmit = {async (e) => { await authorizationHandller(e); /*console.log(123123, loggedUser);  settest(loggedUser);*/}} className='RegAuthForm'>
 								<label>Логин: <br/>
 									<input name='login' type='text' placeholder="Логин" required/>
 								</label>

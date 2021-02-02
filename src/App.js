@@ -9,47 +9,57 @@ import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
-async function checLocalToken() {
-	const localToken = localStorage.getItem(sessionToken);
 
-	if (localToken){
-		const requestOptions = {
-			method: 'PUT',
-			headers:{
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				token: localToken,
-			})
-		};
 
-		const request = await fetch(checkSessionPath, requestOptions);
-		const result = await request.json();
 
-		if (result.status){
-		console.log('token found and valid')
-		return result.user;
-
-		} else {
-		console.log('token not found or invalid')
-		localStorage.removeItem(sessionToken);
-		return '';
-		}
-	}
-	return '';
-}
 
 function App() {
+	
 
-	const [loggedUser, setloggedUser] = React.useState('');
-	const [topics, setTopics] = React.useState(Topics);
+	const [isUserLoged, setisUserLoged] = React.useState(false);
+	const [topics, setTopics] = React.useState(Topics)
+	let [loggedUser, setloggedUser] = React.useState({});
+	const [isActiveMenu, setisActiveMenu] = React.useState(false);
+  
 	const [btns, setBtns] = React.useState(ButtonsBlocked);
 
+
 	React.useEffect(() =>{
-		checLocalToken().then (res =>  setloggedUser(res));
+		checLocalToken().then (res =>  setisUserLoged(res));
 		getRoundRandomTopics().then(res => setTopics(res));
-		console.log('useEffect app')
+		console.log('useeffect')
 	 }, []);
+
+	 async function checLocalToken() {
+		const localToken = localStorage.getItem(sessionToken);
+
+		if (localToken){
+			const requestOptions = {
+				method: 'PUT',
+				headers:{
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					token: localToken,
+				})
+			};
+
+			const response = await fetch(checkSessionPath, requestOptions);
+			const result = await response.json();
+
+			if (result.status){
+				setloggedUser(result.user);
+				return true;
+			} else {
+			alert(result.message);
+			localStorage.removeItem(sessionToken);
+			setloggedUser({});
+			return false;
+			}
+		}
+		setloggedUser({});
+		return false;
+	}
 
 	function logger(a) {
 		console.log(a);
@@ -84,11 +94,13 @@ function App() {
 	}
 
 	return (
-    <GlobalContext.Provider value= {{ loggedUser, setloggedUser, logger, topics, setTopics, btns, setBtns}} >
+
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics, setTopics, btns, setBtns}} >
+
 		<div className="wrapper">
       <Navbar />
 			<GameField />
-    </div>
+			</div>
 		</GlobalContext.Provider>
   );
 }
