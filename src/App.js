@@ -6,18 +6,23 @@ import hide from "./functions/hide";
 import show from "./functions/show";
 import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
-import  {sessionToken, checkSessionPath} from './components/Const'
+import  {sessionToken, checkSessionPath} from './components/Const';
+import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
 
 
 
 
 function App() {
+	
+
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
 	let [loggedUser, setloggedUser] = React.useState({});
-
 	const [isActiveMenu, setisActiveMenu] = React.useState(false);
+  
+	const [btns, setBtns] = React.useState(ButtonsBlocked);
+
 
 	React.useEffect(() =>{
 		checLocalToken().then (res =>  setisUserLoged(res));
@@ -80,10 +85,18 @@ function App() {
 		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
 		const currentQuestionRightAnswer = a.answers;
 		localStorage.setItem('currentQuestionRightAnswer', currentQuestionRightAnswer);
+		setBtns(
+			btns.map((btn) => {
+				btn.isBlocked = !btn.isBlocked;
+				return btn;
+			})
+		)
 	}
 
 	return (
-    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics, setTopics}} >
+
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics, setTopics, btns, setBtns}} >
+
 		<div className="wrapper">
       <Navbar />
 			<GameField />
