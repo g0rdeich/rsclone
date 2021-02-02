@@ -7,6 +7,7 @@ import show from "../../../functions/show";
 import hide from "../../../functions/hide";
 import changeHostText from "../../../functions/changeHostText";
 import addToStats from "../../../functions/addToStats";
+import compareAnswers from "../../../functions/compareAnswers";
 
 function ButtonsSectionLeft() {
 	const { setTopics } = React.useContext(Context);
@@ -22,8 +23,8 @@ function ButtonsSectionLeft() {
         const answer = document.querySelector('.answer-text').value.trim();
         const rightAnswer = localStorage.getItem('currentQuestionRightAnswer');
         const price = parseInt(localStorage.getItem('currentQuestionPrice'), 10);
-        console.log(`points: ${points} ${typeof points}, price: ${price} ${typeof price}`);
-        if(answer === rightAnswer) {
+        const isRight = compareAnswers(answer, rightAnswer);
+        if(isRight === true) {
             changeHostText('Абсолютно верно!');
             points += price;
             console.log(`points now: ${points}`);
