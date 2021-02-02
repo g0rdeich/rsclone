@@ -15,6 +15,7 @@ const serverPath = 'https://rs-clone-thrvrce-demo.herokuapp.com/';// production 
 
 
 	const sessionToken = 'sessionToken';
+	const checkSessionInterval = 1000 * 60 * 3;
 
 // }
 export {
@@ -28,4 +29,5 @@ export {
 	insertArrayOfTopicsPath,
 	deleteTopicByNamePath,
 	updateUserPath,
+	checkSessionInterval,
 }
