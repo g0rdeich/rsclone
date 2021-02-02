@@ -8,11 +8,17 @@ import hide from "../../../functions/hide";
 import changeHostText from "../../../functions/changeHostText";
 import addToStats from "../../../functions/addToStats";
 import compareAnswers from "../../../functions/compareAnswers";
+import useSound from "use-sound";
+import wrongAnswerSound from "../../../sounds/100-k-1-wrong-answer.mp3";
+import rightAnswerSound from "../../../sounds/right-answer.mp3";
 
 function ButtonsSectionLeft() {
 	const { setTopics } = React.useContext(Context);
 
 	const {btns, setBtns} = React.useContext(Context);
+
+    const [playWrongAnswerSound] = useSound(wrongAnswerSound);
+    const [playRightAnswerSound] = useSound(rightAnswerSound);
 
     function CheckGuess() {
         const pointsInfo = document.querySelector('.player-points')
@@ -29,12 +35,14 @@ function ButtonsSectionLeft() {
             points += price;
             console.log(`points now: ${points}`);
             addToStats('right');
+            playRightAnswerSound();
         } else {
             points -= price;
             console.log(`points now: ${points}`);
             changeHostText(`Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
             addToStats('wrong');
+            playWrongAnswerSound();
         }
         const table = document.querySelector('.questions-table');
         const questionText = document.querySelector('.question-text');
