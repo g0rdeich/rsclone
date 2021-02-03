@@ -10,7 +10,11 @@ function SkipQuestionButton() {
     function skipQuestion() {
         const table = document.querySelector('.questions-table');
         const questionText = document.querySelector('.question-text');
-        const info = document.querySelector('.info');
+				const info = document.querySelector('.info');
+				const textArea = document.querySelector('.answer-text');
+    		const submitBtn = document.querySelector('.submit-button');
+    		hide(textArea);
+    		hide(submitBtn);
         hide(info);
         hide(questionText);
         show(table);
