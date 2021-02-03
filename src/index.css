@@ -46,7 +46,8 @@ nav .NAVBAR > li:hover {
   display: flex;
   padding: 2rem;
   border-radius: 5px;
-  background: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
   overflow: auto;
   max-width: 650px;
   max-height: 650px;
@@ -91,7 +92,8 @@ nav .NAVBAR > li:hover {
   display: flex;
   padding: 2rem;
   border-radius: 5px;
-  background: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
   overflow: auto;
   max-width: 650px;
   max-height: 650px;
@@ -199,6 +201,40 @@ nav .NAVBAR > li:hover {
   width: 120px;
 }
 
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 0.2rem solid yellow;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a .footerElement {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+footer .gitLogo {
+  width: 40px;
+  height: 40px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -227,7 +263,8 @@ code {
           flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-color: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
 }
 
 .GAME_FIELD_WRAPPER {
