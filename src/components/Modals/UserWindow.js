@@ -3,6 +3,7 @@ import UserAvatar from './UserWindowComponents/userAvatar'
 import  { sessionToken, logOutPath } from '../Const'
 import Context from '../../GlobalContext'
 import Statistic from './UserWindowComponents/Statistic'
+import {logOut} from '../../functions/ServerFunctions'
 
 
 const DEFAULT_MESSAGE = 'Личный кабинет'
@@ -27,7 +28,7 @@ function UserWindow() {
 	}
 
 	const [isOpen, setIsOpen] = React.useState(false);
-	let {loggedUser ,setisUserLoged} = React.useContext(Context);
+	let {loggedUser ,setisUserLoged, setloggedUser} = React.useContext(Context);
 	const [arrOfStats, setArrOfStats] = React.useState([])
 
 	React.useEffect(() => {
@@ -40,26 +41,6 @@ function UserWindow() {
 		} else {
 			(e.target === document.querySelector('.modal') && setIsOpen(false));
 			(e.target === document.querySelector('#Close') && setIsOpen(false));
-		}
-	}
-
-	async function logOut() {
-		localStorage.removeItem(sessionToken);
-		const requestOptions = {
-			method: 'DELETE',
-			headers:{
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				login: loggedUser.login,
-			})
-		}
-
-		const request = await fetch(logOutPath, requestOptions);
-		const result = await request.json();
-
-		if (result.status){
-			setisUserLoged(false);
 		}
 	}
 
@@ -81,7 +62,7 @@ function UserWindow() {
 									{/* <button type='button' onClick={() => setArrOfStats(['побед', 'поражений', 'соотношение', 'test'])}> test stats</button> */}
 								</div>
 							</div>
-							<button id='LogOut' onClick={(e) => logOut()}>Выйти из профиля</button>
+							<button id='LogOut' onClick={(e) => logOut(sessionToken, loggedUser, logOutPath, setisUserLoged, setloggedUser)}>Выйти из профиля</button>
             </div>
           </div>
         )}

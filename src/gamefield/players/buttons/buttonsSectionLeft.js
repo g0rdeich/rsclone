@@ -23,7 +23,7 @@ function ButtonsSectionLeft() {
 
 	const {btns, setBtns} = React.useContext(Context);
 
-	const { loggedUser, setloggedUser, isUserLoged } = React.useContext(Context);
+	const { loggedUser, setloggedUser, isUserLoged, setisUserLoged } = React.useContext(Context);
   const { tour, setTour } = React.useContext(Context);
 
     const [playWrongAnswerSound] = useSound(wrongAnswerSound);
@@ -48,14 +48,14 @@ function ButtonsSectionLeft() {
         if(isRight === true && answer !== '') {
             changeHostText(RightAnswerPhrases[randomNumber]);
             points += price;
-            (isUserLoged && addToStats(true, loggedUser, setloggedUser));
+            (isUserLoged && addToStats(true, loggedUser, setloggedUser, setisUserLoged));
             playRightAnswerSound();
         } else {
             points -= price;
             changeHostText(`${WrongAnswerPhrases[randomNumber]}
             Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
-        (isUserLoged && addToStats(false, loggedUser, setloggedUser));
+        (isUserLoged && addToStats(false, loggedUser, setloggedUser, setisUserLoged));
             playWrongAnswerSound();
         }
         show(table);
