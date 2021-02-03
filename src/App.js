@@ -60,7 +60,7 @@ function App() {
 		return false;
 	}
 
-	function logger(a) {
+	function handler(a) {
 		if(a.played === true) {
 			return;
 		}
@@ -76,10 +76,9 @@ function App() {
 		const table = document.querySelector('.questions-table');
 		const questionText = document.querySelector('.question-text');
 		hide(table);
-		questionText.innerHTML = a.question;
-		speechSynthesis.speak(
-			new SpeechSynthesisUtterance(a.question)
-		);
+		const currentQuestionText = a.question;
+		questionText.innerHTML = currentQuestionText;
+		localStorage.setItem('currentQuestionText', currentQuestionText);
 		show(questionText);
 		const currentQuestionPrice = a.price;
 		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
@@ -95,7 +94,7 @@ function App() {
 
 	return (
 
-    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics,
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, handler, topics,
 		setTopics, btns, setBtns, tour, setTour}} >
 
 		<div className="wrapper">
