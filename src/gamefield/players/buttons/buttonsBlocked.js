@@ -7,6 +7,10 @@ const ButtonsBlocked = [
         buttonName: 'skipButton',
         isBlocked: true,
     },
+    {
+        buttonName: 'readButton',
+        isBlocked: true,
+    },
 ]
 
 export default ButtonsBlocked;

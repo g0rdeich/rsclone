@@ -2,13 +2,13 @@ import React from 'react';
 import Context from '../../GlobalContext'
 
 function Question({question}) {
-	const {logger } = React.useContext(Context)
+	const { handler } = React.useContext(Context)
 	let price = question.price;
     if(question.played === true) {
         price = '';
     }
     return (
-        <div className="question" onClick={() => logger(question)}>{price}</div>
+        <div className="question" onClick={() => handler(question)}>{price}</div>
     )
 }
 

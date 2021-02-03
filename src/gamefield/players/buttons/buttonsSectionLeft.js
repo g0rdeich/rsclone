@@ -14,10 +14,12 @@ import rightAnswerSound from "../../../sounds/right-answer.mp3";
 import getRandomInt from "../../../functions/getRandomNumber";
 import RightAnswerPhrases from "../../host/rightAnswerPhrases";
 import WrongAnswerPhrases from "../../host/wrongAnswersPhrases";
+import roundCompleted from "../../../functions/roundCompleted";
+import roundSkipped from "../../../functions/roundSkipped";
 
 
 function ButtonsSectionLeft() {
-	const { setTopics } = React.useContext(Context);
+	const { topics, setTopics } = React.useContext(Context);
 
 	const {btns, setBtns} = React.useContext(Context);
 
@@ -75,6 +77,15 @@ function ButtonsSectionLeft() {
     }
 
     function updateTopics() {
+        const matrix = topics.map((topic) => topic.topicQuestions
+            .map((question) => question.played));
+        const areAllPlayedArr = matrix.reduce((total, value) => total.concat(value));
+        const areAllPlayed =  areAllPlayedArr.every((item) => item === true);
+        if(areAllPlayed === true) {
+            roundCompleted();
+        } else {
+            roundSkipped();
+        }
         getRoundRandomTopics().then(res => setTopics(res));
         hide(questionText);
         show(table);
