@@ -9,7 +9,7 @@ function Autorization(props) {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const {windowName, isRegisterWnindow} = props;
 	const[message, setMessage] = React.useState(DEFAULT_MESSAGE);
-	let {setisUserLoged, loggedUser, setloggedUser} = React.useContext(Context);
+	let {setisUserLoged, setloggedUser} = React.useContext(Context);
 
 	React.useEffect(() => {
 		setMessage(DEFAULT_MESSAGE);

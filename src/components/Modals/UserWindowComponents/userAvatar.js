@@ -22,7 +22,7 @@ function UserInfo() {
 			const reader = new FileReader();
 
 			reader.onload = async () => {
-				const {statuts, user, statusCode, message} = await updateUserOnServer('avatar', reader.result, sessionToken, updateUserPath);
+				const { user, statusCode, message} = await updateUserOnServer('avatar', reader.result, sessionToken, updateUserPath);
 
 				if (statusCode === 200) {
 					setloggedUser(user)

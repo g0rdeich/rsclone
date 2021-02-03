@@ -17,7 +17,6 @@ function App() {
 	const [topics, setTopics] = React.useState(Topics)
 	let [loggedUser, setloggedUser] = React.useState({});
 
-  const [isActiveMenu, setisActiveMenu] = React.useState(false);
 	const [tour, setTour] = React.useState(1);
 	const [btns, setBtns] = React.useState(ButtonsBlocked);
 
