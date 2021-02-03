@@ -24,7 +24,7 @@ function PlayerIcon() {
     return (
         <div className="player-icon">
             <div className="player-points">Очки: 0</div>
-            <div>{userName}</div>
+            <div>Игрок: {userName}</div>
             < Avatar avatarSrc={imgSrc}/>
         </div>
 
