@@ -6,7 +6,7 @@ import hide from "./functions/hide";
 import show from "./functions/show";
 import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
-import  {sessionToken, checkSessionPath} from './components/Const';
+import  {sessionToken, checkSessionPath, checkSessionInterval} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
 function App() {
@@ -14,9 +14,9 @@ function App() {
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
 	let [loggedUser, setloggedUser] = React.useState({});
-	const [isActiveMenu, setisActiveMenu] = React.useState(false);
+	
+  const [isActiveMenu, setisActiveMenu] = React.useState(false);
 	const [tour, setTour] = React.useState(1);
-  
 	const [btns, setBtns] = React.useState(ButtonsBlocked);
 
 
@@ -24,6 +24,9 @@ function App() {
 		checLocalToken().then (res =>  setisUserLoged(res));
 		getRoundRandomTopics().then(res => setTopics(res));
 		console.log('useeffect')
+		setInterval(() => {
+			checLocalToken().then (res =>  setisUserLoged(res));
+		}, checkSessionInterval);
 	 }, []);
 
 	 async function checLocalToken() {

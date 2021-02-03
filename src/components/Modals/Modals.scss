@@ -11,8 +11,8 @@ $common-border: 0.2rem solid $common-border-color;
 	border-radius: 5px;
 	background: $common-backgroud-color;
 	overflow: auto;
-	max-width: 90vw;
-	max-height: 90vh;
+	max-width: 650px;
+	max-height: 650px;
 	color: $common-text-color;
 	border: $common-border;
 }
@@ -27,6 +27,7 @@ $common-border: 0.2rem solid $common-border-color;
   display: flex;
   justify-content: center;
 	padding-top: 5rem;
+	z-index: 1;
 
 	&-body-auth {
 		@include common-modal-body;
@@ -50,58 +51,110 @@ $common-border: 0.2rem solid $common-border-color;
 	&-body-user {
 		@include common-modal-body;
 		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
-		width: 75vw;
+		 width: 75vw;
 		min-width: 320px;
-		height: 75vh;
+		 height: 75vh;
 		min-height: 380px;
 
-		& > .user_contextWrapper {
+		& .user-title {
+			display: flex;
+			flex-direction: column;
+			align-items: normal;
+			align-content: center;
+			flex-wrap: wrap-reverse;
+			width: 100%;
+			justify-content: space-between;
+			border: $common-border;
+			padding: 1rem;
+
+			& > h2{
+				text-align: center;
+			}
+		}
+
+		& .user-info{
 			display: flex;
 			flex-direction: row;
-			flex-grow: 1;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
 			border: $common-border;
-
-			&>.user-menu{
-				background-color: red;
-				height: 60vh;
-				overflow: auto;
-				min-width: 30%;
-				flex-shrink: 1;
-				flex-basis: 30%;
+			padding: 1rem;
+			margin-bottom: 1rem;
 
 
-				& li{
-					list-style-type: none;
-					padding-left: 1rem;
-					flex-shrink: 1;
+			&-avatar {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 1rem;
+    		margin: 0 4rem;
 
-
-					&:hover {
-						cursor: pointer;
-						text-decoration: underline;
-					}
-				}
-			}
-
-			&>.user-menu-item{
-				background-color: green;
-				flex-basis: 70%;
-				flex-shrink: 1;
-				flex-basis: 70%;
-				height: 60vh;
-				min-width: 30vw;
-				overflow: auto;
 
 				& .avatarImg {
 					width: 5rem;
 					height: 6rem;
+					border: $common-border;
+				}
+
+				& label{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				& #setavatar{
+					color: transparent;
+					border: $common-border;
+					width: 120px;
 				}
 			}
+
+		}
+		// & > .user_contextWrapper {
+		// 	display: flex;
+		// 	flex-direction: row;
+		// 	flex-grow: 1;
+		// 	border: $common-border;
+
+			// &>.user-menu{
+			// 	//background-color: red;
+			// 	height: 60vh;
+			// 	overflow: auto;
+			// 	min-width: 30%;
+			// 	flex-shrink: 1;
+			// 	flex-basis: 30%;
+
+
+			// 	& li{
+			// 		list-style-type: none;
+			// 		padding-left: 1rem;
+			// 		flex-shrink: 1;
+
+
+			// 		&:hover {
+			// 			cursor: pointer;
+			// 			text-decoration: underline;
+			// 		}
+			// 	}
+			// }
+
+			// &>.user-menu-item{
+			// 	//background-color: green;
+			// 	flex-basis: 70%;
+			// 	flex-shrink: 1;
+			// 	flex-basis: 70%;
+			// 	height: 60vh;
+			// 	min-width: 30vw;
+			// 	overflow: auto;
+
+			//
+			// }
 		}
 	}
-}
+
 
 
 
