@@ -65,7 +65,7 @@ function ButtonsSectionLeft() {
         textArea.value = '';
         hide(submitBtn);
         localStorage.setItem('currentPoints', points.toString());
-        pointsInfo.innerHTML = `${points}`;
+        pointsInfo.innerHTML = `Очки: ${points}`;
         setBtns(
             btns.map((btn) => {
                 btn.isBlocked = !btn.isBlocked;
