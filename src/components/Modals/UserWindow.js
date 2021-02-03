@@ -1,5 +1,4 @@
 import React from 'react';
-import './Modals.css'
 import UserAvatar from './UserWindowComponents/userAvatar'
 import  { sessionToken, logOutPath } from '../Const'
 import Context from '../../GlobalContext'
@@ -66,7 +65,7 @@ function UserWindow() {
 
 	return(
 		<React.Fragment>
-        <li onClick={() => setIsOpen(true)} > {loggedUser.login} </li>
+        <li onClick={() => setIsOpen(true)} > Личный кабинет: {loggedUser.login} </li>
 
         {isOpen && (
           <div className='modal' onClick ={(e)=> closeModalHandler(e) } >

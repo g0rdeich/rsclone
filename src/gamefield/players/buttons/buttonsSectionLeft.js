@@ -86,7 +86,7 @@ function ButtonsSectionLeft() {
         )
         setBtns(
             btns.map((btn) => {
-                btn.isBlocked = !btn.isBlocked;
+                btn.isBlocked = true; // !btn.isBlocked;
                 return btn;
             })
         )

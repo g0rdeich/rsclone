@@ -6,7 +6,7 @@ function ButtonsSection() {
     return(
         <div className="buttons-section">
             < ButtonsSectionLeft />
-            < ButtonSectionRight />
+            {/* < ButtonSectionRight /> */}
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import './Modals.css'
 import  {registerPath, loginPath, sessionToken} from '../Const'
 import Context from '../../GlobalContext'
 
