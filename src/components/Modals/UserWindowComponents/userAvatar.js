@@ -1,8 +1,9 @@
 import React from 'react'
-import  {sessionToken, updateUserPath} from '../../Const'
+import  {sessionToken, updateUserPath, logOutPath} from '../../Const'
 import { updateUserOnServer } from '../../../functions/ServerFunctions'
 import Context from '../../../GlobalContext'
 import defaultAvatar from '../../../img/default.avatar.png'
+import { logOut} from '../../../functions/ServerFunctions'
 
 function UserInfo() {
 	let {loggedUser ,setisUserLoged, setloggedUser } = React.useContext(Context);
@@ -21,17 +22,19 @@ function UserInfo() {
 			const reader = new FileReader();
 
 			reader.onload = async () => {
-				const {statuts, user} = await updateUserOnServer('avatar', reader.result, sessionToken, updateUserPath);
+				const {statuts, user, statusCode, message} = await updateUserOnServer('avatar', reader.result, sessionToken, updateUserPath);
 
-				if (statuts) {
+				if (statusCode === 200) {
 					setloggedUser(user)
 					setImgSrc(reader.result);
+				} else if(statusCode === 500){
+					alert(message);
 				} else {
-					alert('Ошибка обновления на сервере. Аватар изменен только на время текущего сеанса.');
-					setImgSrc(reader.result);
+					alert(`${message} Будет выполнен выход из профиля`);
+					logOut(sessionToken, loggedUser, logOutPath, setisUserLoged, setloggedUser)
+
 				}
 			}
-
 			reader.readAsDataURL(file);
 		}
 	}
