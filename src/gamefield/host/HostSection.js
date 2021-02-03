@@ -1,5 +1,6 @@
 import React from 'react';
 import Avatar from "../../components/Avatar";
+import HostAvatar from ".././../img/HostAvatar.jpg";
 
 function HostSection() {
     return (
@@ -7,7 +8,7 @@ function HostSection() {
             <div className="info hidden">
                 <p className="host-text"></p>
             </div>
-            < Avatar />
+            < Avatar avatarSrc={HostAvatar}/>
         </div>
     )
 }
