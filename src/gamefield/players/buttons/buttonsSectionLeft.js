@@ -8,6 +8,13 @@ import hide from "../../../functions/hide";
 import changeHostText from "../../../functions/changeHostText";
 import addToStats from "../../../functions/addToStats";
 import compareAnswers from "../../../functions/compareAnswers";
+import useSound from "use-sound";
+import wrongAnswerSound from "../../../sounds/100-k-1-wrong-answer.mp3";
+import rightAnswerSound from "../../../sounds/right-answer.mp3";
+import getRandomInt from "../../../functions/getRandomNumber";
+import RightAnswerPhrases from "../../host/rightAnswerPhrases";
+import WrongAnswerPhrases from "../../host/wrongAnswersPhrases";
+
 
 function ButtonsSectionLeft() {
 	const { setTopics } = React.useContext(Context);
@@ -15,6 +22,16 @@ function ButtonsSectionLeft() {
 	const {btns, setBtns} = React.useContext(Context);
 
 	const { loggedUser, setloggedUser, isUserLoged } = React.useContext(Context);
+  const { tour, setTour } = React.useContext(Context);
+
+    const [playWrongAnswerSound] = useSound(wrongAnswerSound);
+    const [playRightAnswerSound] = useSound(rightAnswerSound);
+
+    const table = document.querySelector('.questions-table');
+    const questionText = document.querySelector('.question-text');
+    const info = document.querySelector('.info');
+
+
     function CheckGuess() {
         const pointsInfo = document.querySelector('.player-points')
         let points = parseInt(pointsInfo.innerHTML);
@@ -25,20 +42,20 @@ function ButtonsSectionLeft() {
         const rightAnswer = localStorage.getItem('currentQuestionRightAnswer');
         const price = parseInt(localStorage.getItem('currentQuestionPrice'), 10);
         const isRight = compareAnswers(answer, rightAnswer);
-        if(isRight === true) {
-            changeHostText('Абсолютно верно!');
+        const randomNumber = getRandomInt(0, RightAnswerPhrases.length);
+        if(isRight === true && answer !== '') {
+            changeHostText(RightAnswerPhrases[randomNumber]);
             points += price;
-            console.log(`points now: ${points}`);
             (isUserLoged && addToStats(true, loggedUser, setloggedUser));
+            playRightAnswerSound();
         } else {
             points -= price;
-            console.log(`points now: ${points}`);
-            changeHostText(`Минус ${price} баллов!
+            changeHostText(`${WrongAnswerPhrases[randomNumber]}
+            Минус ${price} баллов!
         Правильный ответ: ${rightAnswer}`);
-				(isUserLoged && addToStats(false, loggedUser, setloggedUser));
+        (isUserLoged && addToStats(false, loggedUser, setloggedUser));
+            playWrongAnswerSound();
         }
-        const table = document.querySelector('.questions-table');
-        const questionText = document.querySelector('.question-text');
         show(table);
         questionText.innerHTML = '';
         hide(questionText);
@@ -57,6 +74,24 @@ function ButtonsSectionLeft() {
         )
     }
 
+    function updateTopics() {
+        getRoundRandomTopics().then(res => setTopics(res));
+        hide(questionText);
+        show(table);
+        hide(info);
+        setTour(
+            (tour) => {
+                return tour + 1;
+            }
+        )
+        setBtns(
+            btns.map((btn) => {
+                btn.isBlocked = !btn.isBlocked;
+                return btn;
+            })
+        )
+    }
+
 	return (
         <div className="buttons-section-left">
             < AnswerButton />
@@ -66,7 +101,7 @@ function ButtonsSectionLeft() {
                 Подтвердить ответ</button>
             < SkipQuestionButton />
             <button type='button' className="button next-round-button"
-                    onClick={() => getRoundRandomTopics().then(res => setTopics(res))}> Сменить тур</button>
+                    onClick={() => updateTopics()}> Сменить тур</button>
         </div>
     )
 }

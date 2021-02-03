@@ -9,16 +9,14 @@ import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath, checkSessionInterval} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 
-
-
-
-
 function App() {
+
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
 	let [loggedUser, setloggedUser] = React.useState({});
-	const [isActiveMenu, setisActiveMenu] = React.useState(false);
-
+	
+  const [isActiveMenu, setisActiveMenu] = React.useState(false);
+	const [tour, setTour] = React.useState(1);
 	const [btns, setBtns] = React.useState(ButtonsBlocked);
 
 
@@ -63,9 +61,7 @@ function App() {
 	}
 
 	function logger(a) {
-		console.log(a);
 		if(a.played === true) {
-			console.log('already played');
 			return;
 		}
 		const newHostText = `${a.topicName} ${a.price}`;
@@ -81,6 +77,9 @@ function App() {
 		const questionText = document.querySelector('.question-text');
 		hide(table);
 		questionText.innerHTML = a.question;
+		speechSynthesis.speak(
+			new SpeechSynthesisUtterance(a.question)
+		);
 		show(questionText);
 		const currentQuestionPrice = a.price;
 		localStorage.setItem('currentQuestionPrice', currentQuestionPrice);
@@ -96,7 +95,8 @@ function App() {
 
 	return (
 
-    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics, setTopics, btns, setBtns}} >
+    <GlobalContext.Provider value= {{ isUserLoged, loggedUser,setloggedUser, setisUserLoged, logger, topics,
+		setTopics, btns, setBtns, tour, setTour}} >
 
 		<div className="wrapper">
       <Navbar />
