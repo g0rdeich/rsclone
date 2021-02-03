@@ -1,5 +1,4 @@
 import React from 'react';
-import './Modals.css'
 import UserAvatar from './UserWindowComponents/userAvatar'
 import  { sessionToken, logOutPath } from '../Const'
 import Context from '../../GlobalContext'
