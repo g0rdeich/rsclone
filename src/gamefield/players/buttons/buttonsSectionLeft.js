@@ -24,7 +24,7 @@ function ButtonsSectionLeft() {
 	const {btns, setBtns} = React.useContext(Context);
 
 	const { loggedUser, setloggedUser, isUserLoged, setisUserLoged } = React.useContext(Context);
-  const { tour, setTour } = React.useContext(Context);
+  const { setTour } = React.useContext(Context);
 
     const [playWrongAnswerSound] = useSound(wrongAnswerSound);
     const [playRightAnswerSound] = useSound(rightAnswerSound);
