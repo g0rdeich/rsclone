@@ -1,5 +1,5 @@
 $common-backgroud-color:rgba(46, 20, 93, 88%);
-$common-border-color: yellow;
+$common-border-color: #ffd700;
 $common-text-color: white;
 $button-text-color: black;
 $button-background-collor: white;
@@ -31,11 +31,11 @@ nav{
 		justify-content: flex-start;
 		height: 5%;
 
-
 		&>li {
 			list-style-type: none;
 			padding-left: 1rem;
 			color: $common-text-color;
+			font-weight: 800;
 
 			&:hover {
 				cursor: pointer;
@@ -238,7 +238,9 @@ footer{
 		height: 90%;
 		color: $common-text-color
 	}
-
+.question-text{
+	font-size: 2rem;
+}
 	.round-number {
 		display: flex;
 		justify-content: center;
@@ -264,6 +266,8 @@ footer{
 		justify-content: flex-start;
 		align-items: center;
 		width: 50%;
+		font-weight: bold;
+    font-size: 1.6rem;
 	}
 
 	.question {
@@ -272,6 +276,8 @@ footer{
 		align-items: center;
 		width: 10%;
 		border-left: $common-border;
+		font-size: 2rem;
+		font-weight: bold;
 	}
 
 	.questions-table {
@@ -318,6 +324,7 @@ footer{
 		margin: 13% auto;
 		width: 200px;
 		height: 130px;
+		color: $common-text-color;
 	}
 
 	.buttons-section {
@@ -341,6 +348,8 @@ footer{
 	.button {
 		width: 170px;
 		height: 50px;
+		border-radius: 75%;
+		font-size:  1.2rem;
 	}
 
 	.hidden {
