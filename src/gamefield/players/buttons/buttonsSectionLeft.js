@@ -36,7 +36,7 @@ function ButtonsSectionLeft() {
 
     function CheckGuess() {
         const pointsInfo = document.querySelector('.player-points')
-        let points = parseInt(pointsInfo.innerHTML);
+        let points = parseInt(pointsInfo.innerHTML.slice(6));
         if(points !== 0) {
             points = parseInt(localStorage.getItem('currentPoints'));
         }

@@ -9,6 +9,7 @@ import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath, checkSessionInterval} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
 import Footer from "./components/Footer";
+import nullifyItems from "./functions/nullifyItems";
 
 function App() {
 
@@ -22,9 +23,9 @@ function App() {
 
 
 	React.useEffect(() =>{
+		nullifyItems();
 		checLocalToken().then (res =>  setisUserLoged(res));
 		getRoundRandomTopics().then(res => setTopics(res));
-		console.log('useeffect')
 		setInterval(() => {
 			checLocalToken().then (res =>  setisUserLoged(res));
 		}, checkSessionInterval);
