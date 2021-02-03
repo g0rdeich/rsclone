@@ -79,7 +79,7 @@ function UserWindow() {
 								<UserAvatar/>
 								<div className='user-info-detail' >
 									{arrOfStats.map((stat) => <Statistic statName={stat.name} statValue={stat.value} key={stat.name}/>)}
-									<button type='button' onClick={() => setArrOfStats(['побед', 'поражений', 'соотношение', 'test'])}> test stats</button>
+									{/* <button type='button' onClick={() => setArrOfStats(['побед', 'поражений', 'соотношение', 'test'])}> test stats</button> */}
 								</div>
 							</div>
 							<button id='LogOut' onClick={(e) => logOut()}>Выйти из профиля</button>
