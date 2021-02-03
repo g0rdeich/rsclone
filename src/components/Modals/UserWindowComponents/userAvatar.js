@@ -2,7 +2,7 @@ import React from 'react'
 import  {sessionToken, updateUserPath} from '../../Const'
 import { updateUserOnServer } from '../../../functions/ServerFunctions'
 import Context from '../../../GlobalContext'
-import defaultAvatar from './default.avatar.png'
+import defaultAvatar from '../../../img/default.avatar.png'
 
 function UserInfo() {
 	let {loggedUser ,setisUserLoged, setloggedUser } = React.useContext(Context);
