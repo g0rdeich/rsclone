@@ -23,8 +23,8 @@
   border-radius: 5px;
   background: blue;
   overflow: auto;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 650px;
+  max-height: 650px;
   color: white;
   border: 0.2rem solid yellow;
   -webkit-box-orient: vertical;
@@ -68,17 +68,17 @@
   border-radius: 5px;
   background: blue;
   overflow: auto;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 650px;
+  max-height: 650px;
   color: white;
   border: 0.2rem solid yellow;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -88,7 +88,34 @@
   min-height: 380px;
 }
 
-.modal-body-user > .user_contextWrapper {
+.modal-body-user .user-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: normal;
+      -ms-flex-align: normal;
+          align-items: normal;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 0.2rem solid yellow;
+  padding: 1rem;
+}
+
+.modal-body-user .user-title > h2 {
+  text-align: center;
+}
+
+.modal-body-user .user-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -96,49 +123,54 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  border: 0.2rem solid yellow;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-body-user .user-info-avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  margin: 0 4rem;
+}
+
+.modal-body-user .user-info-avatar .avatarImg {
+  width: 5rem;
+  height: 6rem;
   border: 0.2rem solid yellow;
 }
 
-.modal-body-user > .user_contextWrapper > .user-menu {
-  background-color: red;
-  height: 60vh;
-  overflow: auto;
-  min-width: 30%;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
+.modal-body-user .user-info-avatar label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.modal-body-user > .user_contextWrapper > .user-menu li {
-  list-style-type: none;
-  padding-left: 1rem;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-}
-
-.modal-body-user > .user_contextWrapper > .user-menu li:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.modal-body-user > .user_contextWrapper > .user-menu-item {
-  background-color: green;
-  -ms-flex-preferred-size: 70%;
-      flex-basis: 70%;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-  flex-basis: 70%;
-  height: 60vh;
-  min-width: 30vw;
-  overflow: auto;
-}
-
-.modal-body-user > .user_contextWrapper > .user-menu-item .avatarImg {
-  width: 5rem;
-  height: 6rem;
+.modal-body-user .user-info-avatar #setavatar {
+  color: transparent;
+  border: 0.2rem solid yellow;
+  width: 120px;
 }
 /*# sourceMappingURL=Modals.css.map */
