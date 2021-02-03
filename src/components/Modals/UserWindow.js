@@ -66,7 +66,7 @@ function UserWindow() {
 
 	return(
 		<React.Fragment>
-        <li onClick={() => setIsOpen(true)} > {loggedUser.login} </li>
+        <li onClick={() => setIsOpen(true)} > Личный кабинет: {loggedUser.login} </li>
 
         {isOpen && (
           <div className='modal' onClick ={(e)=> closeModalHandler(e) } >
