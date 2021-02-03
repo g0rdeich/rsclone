@@ -1,5 +1,5 @@
 nav {
-  border-bottom: 0.2rem solid yellow;
+  border-bottom: 0.2rem solid #ffd700;
 }
 
 nav .NAVBAR {
@@ -16,6 +16,7 @@ nav .NAVBAR > li {
   list-style-type: none;
   padding-left: 1rem;
   color: white;
+  font-weight: 800;
 }
 
 nav .NAVBAR > li:hover {
@@ -46,12 +47,13 @@ nav .NAVBAR > li:hover {
   display: flex;
   padding: 2rem;
   border-radius: 5px;
-  background: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
   overflow: auto;
   max-width: 650px;
   max-height: 650px;
   color: white;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -91,12 +93,13 @@ nav .NAVBAR > li:hover {
   display: flex;
   padding: 2rem;
   border-radius: 5px;
-  background: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
   overflow: auto;
   max-width: 650px;
   max-height: 650px;
   color: white;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -132,7 +135,7 @@ nav .NAVBAR > li:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
   padding: 1rem;
 }
 
@@ -154,7 +157,7 @@ nav .NAVBAR > li:hover {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
   padding: 1rem;
   margin-bottom: 1rem;
 }
@@ -177,7 +180,7 @@ nav .NAVBAR > li:hover {
 .modal-body-user .user-info-avatar .avatarImg {
   width: 5rem;
   height: 6rem;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
 }
 
 .modal-body-user .user-info-avatar label {
@@ -195,8 +198,42 @@ nav .NAVBAR > li:hover {
 
 .modal-body-user .user-info-avatar #setavatar {
   color: transparent;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
   width: 120px;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 0.2rem solid #ffd700;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a .footerElement {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+footer .gitLogo {
+  width: 40px;
+  height: 40px;
 }
 
 * {
@@ -227,7 +264,8 @@ code {
           flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-color: blue;
+  background: #311c4a;
+  background: radial-gradient(circle, #311c4a 0%, #6d3685 95%);
 }
 
 .GAME_FIELD_WRAPPER {
@@ -298,6 +336,10 @@ code {
   color: white;
 }
 
+.question-text {
+  font-size: 2rem;
+}
+
 .round-number {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -319,7 +361,7 @@ code {
   display: flex;
   width: 100%;
   height: 16%;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
 }
 
 .topic:not(:nth-child(1)) {
@@ -337,6 +379,8 @@ code {
       -ms-flex-align: center;
           align-items: center;
   width: 50%;
+  font-weight: bold;
+  font-size: 1.6rem;
 }
 
 .question {
@@ -350,7 +394,9 @@ code {
       -ms-flex-align: center;
           align-items: center;
   width: 10%;
-  border-left: 0.2rem solid yellow;
+  border-left: 0.2rem solid #ffd700;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .questions-table {
@@ -388,7 +434,7 @@ code {
 .avatar > img {
   width: 170px;
   height: 170px;
-  border: 0.2rem solid yellow;
+  border: 0.2rem solid #ffd700;
 }
 
 .info {
@@ -409,6 +455,7 @@ code {
   margin: 13% auto;
   width: 200px;
   height: 130px;
+  color: white;
 }
 
 .buttons-section {
@@ -447,6 +494,8 @@ code {
 .button {
   width: 170px;
   height: 50px;
+  border-radius: 75%;
+  font-size: 1.2rem;
 }
 
 .hidden {

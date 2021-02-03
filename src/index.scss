@@ -1,5 +1,5 @@
-$common-backgroud-color: blue;
-$common-border-color: yellow;
+$common-backgroud-color:rgba(46, 20, 93, 88%);
+$common-border-color: #ffd700;
 $common-text-color: white;
 $button-text-color: black;
 $button-background-collor: white;
@@ -9,12 +9,18 @@ $common-border: 0.2rem solid $common-border-color;
 	display: flex;
 	padding: 2rem;
 	border-radius: 5px;
-	background: $common-backgroud-color;
+	// background: $common-backgroud-color;
+	@include linearGradBg;
 	overflow: auto;
 	max-width: 650px;
 	max-height: 650px;
 	color: $common-text-color;
 	border: $common-border;
+}
+
+@mixin linearGradBg {
+	background: rgb(49,28,74);
+	background: radial-gradient(circle, rgba(49,28,74,1) 0%, rgba(109,54,133,1) 95%);//
 }
 
 nav{
@@ -25,11 +31,11 @@ nav{
 		justify-content: flex-start;
 		height: 5%;
 
-
 		&>li {
 			list-style-type: none;
 			padding-left: 1rem;
 			color: $common-text-color;
+			font-weight: 800;
 
 			&:hover {
 				cursor: pointer;
@@ -138,6 +144,31 @@ nav{
 	}
 }
 
+footer{
+	display: flex;
+	color: $common-text-color;
+	justify-content: space-around;
+	align-items: center;
+	border-top: $common-border;
+
+	& a{
+		text-decoration: none;
+		color: $common-text-color;
+
+		& .footerElement{
+			display: flex;
+			align-items: center;
+			align-self: center;
+		}
+	}
+
+	& .gitLogo{
+		width: 40px;
+		height: 40px;
+	}
+}
+
+
 	* {
 		margin: 0;
 		padding: 0;
@@ -163,7 +194,8 @@ nav{
 		flex-direction: column;
 		width: 100vw;
 		height: 100vh;
-		background-color: $common-backgroud-color;
+		//background-color: $common-backgroud-color;
+		@include linearGradBg;
 	}
 
 	.GAME_FIELD_WRAPPER{
@@ -206,7 +238,9 @@ nav{
 		height: 90%;
 		color: $common-text-color
 	}
-
+.question-text{
+	font-size: 2rem;
+}
 	.round-number {
 		display: flex;
 		justify-content: center;
@@ -232,6 +266,8 @@ nav{
 		justify-content: flex-start;
 		align-items: center;
 		width: 50%;
+		font-weight: bold;
+    font-size: 1.6rem;
 	}
 
 	.question {
@@ -240,6 +276,8 @@ nav{
 		align-items: center;
 		width: 10%;
 		border-left: $common-border;
+		font-size: 2rem;
+		font-weight: bold;
 	}
 
 	.questions-table {
@@ -268,10 +306,6 @@ nav{
 		border: $common-border;
 	}
 
-	.avatar{
-
-	}
-
 	.info {
 		position: absolute;
 		top: -20%;
@@ -290,6 +324,7 @@ nav{
 		margin: 13% auto;
 		width: 200px;
 		height: 130px;
+		color: $common-text-color;
 	}
 
 	.buttons-section {
@@ -313,6 +348,8 @@ nav{
 	.button {
 		width: 170px;
 		height: 50px;
+		border-radius: 75%;
+		font-size:  1.2rem;
 	}
 
 	.hidden {

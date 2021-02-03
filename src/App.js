@@ -8,13 +8,14 @@ import changeHostText from "./functions/changeHostText";
 import GlobalContext from './GlobalContext'
 import  {sessionToken, checkSessionPath, checkSessionInterval} from './components/Const';
 import ButtonsBlocked from "./gamefield/players/buttons/buttonsBlocked";
+import Footer from "./components/Footer";
 
 function App() {
 
 	const [isUserLoged, setisUserLoged] = React.useState(false);
 	const [topics, setTopics] = React.useState(Topics)
 	let [loggedUser, setloggedUser] = React.useState({});
-	
+
   const [isActiveMenu, setisActiveMenu] = React.useState(false);
 	const [tour, setTour] = React.useState(1);
 	const [btns, setBtns] = React.useState(ButtonsBlocked);
@@ -100,6 +101,7 @@ function App() {
 		<div className="wrapper">
       <Navbar />
 			<GameField />
+			<Footer/>
 			</div>
 		</GlobalContext.Provider>
   );
