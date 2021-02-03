@@ -1,0 +1,363 @@
+$common-backgroud-color:rgba(46, 20, 93, 88%);
+$common-border-color: #ffd700;
+$common-text-color: white;
+$button-text-color: black;
+$button-background-collor: white;
+$common-border: 0.2rem solid $common-border-color;
+
+@mixin common-modal-body {
+	display: flex;
+	padding: 2rem;
+	border-radius: 5px;
+	// background: $common-backgroud-color;
+	@include linearGradBg;
+	overflow: auto;
+	max-width: 650px;
+	max-height: 650px;
+	color: $common-text-color;
+	border: $common-border;
+}
+
+@mixin linearGradBg {
+	background: rgb(49,28,74);
+	background: radial-gradient(circle, rgba(49,28,74,1) 0%, rgba(109,54,133,1) 95%);//
+}
+
+nav{
+	border-bottom: $common-border;
+
+	.NAVBAR {
+		display: flex;
+		justify-content: flex-start;
+		height: 5%;
+
+		&>li {
+			list-style-type: none;
+			padding-left: 1rem;
+			color: $common-text-color;
+			font-weight: 800;
+
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+	padding-top: 5rem;
+	z-index: 1;
+
+	&-body-auth {
+		@include common-modal-body;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 400px;
+		height: 300px;
+
+		.RegAuthForm{
+			display: flex;
+			flex-direction: column;
+		}
+
+		.RegAuth-Controls {
+			display: flex;
+			justify-content: center;
+		}
+	}
+
+	&-body-user {
+		@include common-modal-body;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		 width: 75vw;
+		min-width: 320px;
+		 height: 75vh;
+		min-height: 380px;
+
+		& .user-title {
+			display: flex;
+			flex-direction: column;
+			align-items: normal;
+			align-content: center;
+			flex-wrap: wrap-reverse;
+			width: 100%;
+			justify-content: space-between;
+			border: $common-border;
+			padding: 1rem;
+
+			& > h2{
+				text-align: center;
+			}
+		}
+
+		& .user-info{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+			border: $common-border;
+			padding: 1rem;
+			margin-bottom: 1rem;
+
+
+			&-avatar {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 1rem;
+    		margin: 0 4rem;
+
+
+				& .avatarImg {
+					width: 5rem;
+					height: 6rem;
+					border: $common-border;
+				}
+
+				& label{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				& #setavatar{
+					color: transparent;
+					border: $common-border;
+					width: 120px;
+				}
+			}
+
+		}
+	}
+}
+
+footer{
+	display: flex;
+	color: $common-text-color;
+	justify-content: space-around;
+	align-items: center;
+	border-top: $common-border;
+
+	& a{
+		text-decoration: none;
+		color: $common-text-color;
+
+		& .footerElement{
+			display: flex;
+			align-items: center;
+			align-self: center;
+		}
+	}
+
+	& .gitLogo{
+		width: 40px;
+		height: 40px;
+	}
+}
+
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	code {
+		font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+	}
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100vw;
+		height: 100vh;
+		//background-color: $common-backgroud-color;
+		@include linearGradBg;
+	}
+
+	.GAME_FIELD_WRAPPER{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		height: 95%;
+	}
+
+	.host-section {
+		 position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		width: 50%;
+		height: 95%
+	}
+
+	.game-section {
+		margin: 0 auto;
+		width: 95%;
+		height: 63%;
+	}
+
+	.bottom-section {
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 95%;
+		height: 30%;
+	}
+
+	.questions-section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 90%;
+		color: $common-text-color
+	}
+.question-text{
+	font-size: 2rem;
+}
+	.round-number {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		font-size: 30px;
+		margin-bottom: 2%;
+	}
+
+	.topic {
+		display: flex;
+		width: 100%;
+		height: 16%;
+		border: $common-border;
+	}
+
+	.topic:not(:nth-child(1)) {
+		border-top: none;
+	}
+
+	.topic-name {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 50%;
+		font-weight: bold;
+		font-size: 1.1rem;
+	}
+
+	.question {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 10%;
+		border-left: $common-border;
+		font-size: 2rem;
+		font-weight: bold;
+	}
+
+	.questions-table {
+		width: 80%;
+		height: 80%;
+	}
+
+	.players-section {
+		display: flex;
+		justify-content: space-around;
+		align-items: flex-end;
+		width: 50%;
+		height: 95%;
+	}
+
+	.player-icon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: $common-text-color
+	}
+
+	.avatar > img {
+		width: 170px;
+		height: 170px;
+		border: $common-border;
+	}
+
+	.info {
+		position: absolute;
+		top: -20%;
+		left: 60%;
+		width: 350px;
+		height: 250px;
+		background-image: url("./img/Speech_bubble.svg.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-color: transparent;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	.host-text {
+		margin: 13% auto;
+		width: 200px;
+		height: 130px;
+		color: $common-text-color;
+	}
+
+	.buttons-section {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 360px;
+		height: 250px;
+	}
+
+	.buttons-section-left,
+	.buttons-section-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		width: 170px;
+		height: 250px;
+	}
+
+	.button {
+		width: 170px;
+		height: 50px;
+		border-radius: 75%;
+		font-size:  1.2rem;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+
+
+
+
+
