@@ -4,13 +4,13 @@ Article: https://g0rdeich.medium.com/%D1%81%D0%B2%D0%BE%D1%8F-%D0%B8%D0%B3%D1%80
 
 ######  
 We used:
-+React
-+SCSS
-+Eslint
-+Webpack
-+useSound
-+SpeechSynthesis API
-+Epress.js
-+Typescript
-+MongoDb
-+Nodemon
+*React
+*SCSS
+*Eslint
+*Webpack
+*useSound
+*SpeechSynthesis API
+*Epress.js
+*Typescript
+*MongoDb
+*Nodemon
