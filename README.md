@@ -11,6 +11,6 @@ We used:
 * useSound
 * SpeechSynthesis API
 * Epress.js
-* Typescript
+* Typescript (for backend)
 * MongoDb
 * Nodemon
